@@ -2,15 +2,16 @@
 ![GELab-Zero 主图](./images/main_cn.png)
 
 
-> 👋 hi大家好！我们很荣幸推出首个同时包含模型和基础设施的全开源 GUI Agent。我们的解决方案主打即插即用的工程化体验，无需依赖云端，赋予您完全的隐私控制权。
+> 👋 大家好！我们很荣幸推出首个同时包含模型和基础设施的全开源 GUI Agent。我们的解决方案主打即插即用的工程化体验，无需依赖云端，赋予您完全的隐私控制权。
+
 
 <p align="center">
   <!-- <a href="https://github.com/stepfun-ai/gelab-zero"><img src="https://img.shields.io/badge/💻%20GitHub-Repository-black" alt="GitHub" /></a> -->
-  <a href="https://arxiv.org/abs/2512.15431"><img src="https://img.shields.io/badge/arXiv-Step--GUI Technical Report-B31B1B.svg?logo=arxiv&logoColor=white" alt="arXiv" /></a>
   <a href="https://opengelab.github.io/"><img src="https://img.shields.io/badge/🌐%20Website-Project%20Page-blue" alt="Website" /></a>
   <a href="https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview"><img src="https://img.shields.io/badge/🤗%20Hugging%20Face-GELab--Zero--4B--preview-orange" alt="Hugging Face Model" /></a>
   <a href="https://huggingface.co/datasets/stepfun-ai/AndroidDaily"><img src="https://img.shields.io/badge/📚%20Hugging%20Face-AndroidDaily-yellow" alt="Hugging Face Dataset" /></a>
   <a href="https://modelscope.cn/models/stepfun-ai/GELab-Zero-4B-preview"><img src="https://img.shields.io/badge/🤖%20Model%20Scope-GELab--Zero--4B--preview-blue" alt="Model Scope" /></a>
+
 </p>
 
 <p align="center">
@@ -20,46 +21,60 @@
 
 ## 📰 新闻
 
-* 🎁 **[2025-12-18]** 我们在 **[arXiv](https://arxiv.org/abs/2512.15431)** 上发布了 **Step-GUI 技术报告**！
-* 🎁 **[2025-12-18]** 我们发布了更强大的 GUI 自动化任务 **API**。[点击此处申请 API 访问权限](https://wvixbzgc0u7.feishu.cn/share/base/form/shrcnNStxEmuE7aY6jTW07CZHMf)！
-* 🎁 **[2025-12-12]** 我们发布了支持多设备管理和任务分发的 **MCP-Server**。请参阅 [安装-快速开始](#-安装-快速开始) 和 [MCP-Server 配置](#可选-mcp-server-配置) 了解配置说明。
-* 🎁 **[2025-12-01]** 感谢以下项目和作者提供量化工具及教程：[GGUF_v1](https://huggingface.co/bartowski/stepfun-ai_GELab-Zero-4B-preview-GGUF)、[GGUF_v2](https://huggingface.co/noctrex/GELab-Zero-4B-preview-GGUF)、[EXL3](https://huggingface.co/ArtusDev/stepfun-ai_GELab-Zero-4B-preview-EXL3)、[中文教程](http://xhslink.com/o/1WrmgHGWFYh)、[英文教程](https://www.youtube.com/watch?v=4BMiDyQOpos)。
-* 🎁 **[2025-11-31]** 我们在 **[Hugging Face](https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview)** 和 **[Model Scope](https://modelscope.cn/models/stepfun-ai/GELab-Zero-4B-preview)** 上发布了轻量级 **4B** 模型 GELab-Zero-4B-preview。
-* 🎁 **[2025-11-31]** 我们发布了 **[AndroidDaily](https://huggingface.co/datasets/stepfun-ai/AndroidDaily)** 基准测试中的任务数据。
-* 🎁 **[2025-11-30]** 我们发布了当前的 **GELab-Zero** 工程基础设施。
-* 🎁 **[2025-10]** 我们关于 GELab-Engine 的 **[研究论文](https://github.com/summoneryhl/gelab-engine)** 被 **NeurIPS 2025** 录用。
+* 🎁 **[即将推出...]**
+* 🎁 **[2025-12-12]** MCP-Server ready：
+
+### Step1 启动 mcp server 以支持多设备管理和任务分发
+
+```bash
+# 启动mcp server
+python mcp_server/detailed_gelab_mcp_server.py
+```
+
+### Step2 在Chatbox 里引入MCP tools
+<!-- images/MCP-chatbox.png -->
+<div style="display: flex; align-items: center; justify-content: center; width: 80%; margin: 0 auto;">
+  <img src="images/MCP-chatbox.png" alt="MCP-Demo" style="flex: 1; height: 400px; object-fit: contain; margin-right: 1px;"/>
+</div>
+
+
+* 🎁 **[2025-12]** 感谢以下项目和作者提供的量化工具和教程：[GGUF_v1](https://huggingface.co/bartowski/stepfun-ai_GELab-Zero-4B-preview-GGUF)，[GGUF_v2](https://huggingface.co/noctrex/GELab-Zero-4B-preview-GGUF)，[EXL3](https://huggingface.co/ArtusDev/stepfun-ai_GELab-Zero-4B-preview-EXL3)，[Tutorials_CN](http://xhslink.com/o/1WrmgHGWFYh)，[Tutorials_EN](https://www.youtube.com/watch?v=4BMiDyQOpos)
+* 🎁 **[2025-11]** 我们在 [**Hugging Face**](https://huggingface.co/stepfun-ai/GELab-Zero-4B-preview) 和 [**Model Scope**](https://modelscope.cn/models/stepfun-ai/GELab-Zero-4B-preview) 上发布了一个轻量级的 **4B 模型**。
+* 🎁 **[2025-11]** 我们发布了来自 [**AndroidDaily**](https://huggingface.co/datasets/stepfun-ai/AndroidDaily) 基准测试的任务。
+* 🎁 **[2025-11]** 我们发布了当前的 **GELab-Zero** 工程基础设施。
+* 🎁 **[2025-10]** 我们关于 GELab-Engine 的 [研究](https://github.com/summoneryhl/gelab-engine) 论文被 **NeurIPS 2025** 接受。
 
 
 ## 📑 目录
 
-- [📖 背景](#-背景)
-- [🎥 应用演示](#-应用演示)
-- [🏆 开放基准测试](#-开放基准测试)
-- [🚀 安装-快速开始](#-安装-快速开始)
-- [📝 引用](#-引用)
-
-
-## 📧 联系我们
-
-欢迎加入我们的微信群与我们联系和交流：
-
-| WeChat Group |
-|:-------------------------:|
-| <img src="images/wechat_group2.jpeg" width="200"> |
+- [📖 背景](#-background)
+- [🎥 应用演示](#-application-demonstrations)
+- [📊 AndroidDaily](#-androiddaily-a-self-built-benchmark-close-to-daily-life)
+- [🏆 开放基准测试](#-open-benchmark)
+- [🚀 安装 & 快速开始](#-installation-quick-start)
+- [📝 引用](#-citation)
+- [📧 联系方式](#-contact)
 
 
 ## 📖 背景
 
-随着 AI 体验日益深入消费级终端设备，移动 Agent 研究正处于从 **“可行性验证”** 向 **“大规模应用”** 转型的关键节点。虽然基于 GUI 的方案具有通用兼容性，但移动生态的碎片化带来了沉重的工程负担，阻碍了创新。GELab-Zero 旨在打破这些壁垒。
+随着 AI 体验不断向消费级终端设备渗透，移动端 Agent 研究正处于从“可行性验证”向“大规模应用”转型的关键节点。基于 GUI 的解决方案凭借其对所有 App 的通用兼容性以及无需 App 厂商适配的零成本接入优势，已成为当前阶段应对复杂移动生态、实现 Agent 能力规模化的最佳路径。然而，由于移动应用生态的高度碎片化，要让 GUI Agent 在不同品牌、不同型号的设备上真正跑通，往往面临着海量的工程挑战：多设备 ADB 连接、依赖安装、权限配置、推理服务部署、任务编排与回放等。这意味着 Agent 开发者和 MCP 用户需要处理大量的工程基建工作，难以专注于策略创新。
 
-* **⚡️ 开箱即用的全栈基建**
-解决移动生态碎片化痛点，提供统一的一键推理管道。自动处理多设备 ADB 连接、依赖安装及权限配置，让开发者专注于策略创新而非工程基础设施。
-* **🖥️ 消费级硬件本地部署**
-内置 4B GUI Agent 模型，**针对 Mac (M系列芯片) 及 NVIDIA RTX 4060 进行全方位优化**。支持完全本地化运行，在标准消费级硬件上保障数据隐私与低延迟交互。
-* **📱 灵活的任务分发与编排**
-支持跨多设备分发任务并记录交互轨迹。提供 ReAct 循环、多智能体协作及定时任务三种通用模式，以处理复杂的真实业务场景。
-* **🚀 加速从原型到落地**
-赋能开发者快速验证交互策略，同时允许企业直接复用底层基建实现零成本 MCP 集成，跨越从“可行性验证”到“大规模应用”的关键鸿沟。
+为了解决这一挑战，我们开源了 GELab-Zero 以加速 GUI Agent 的创新与应用落地。它由两个主要部分组成：
+
+- 即插即用的完整推理工程基础设施，帮您搞定所有脏活累活
+- 一个可本地运行的4B GUI Agent 模型
+
+它提供了类似开源 GUI Agent MCP 的一键启动体验，支持完全本地化部署，并将整个推理链路置于您的完全控制之下。具体能力包括：
+
+- 轻量级本地推理：支持 4B 规模模型在消费级硬件上运行，兼顾低延迟与隐私。
+- 一键任务启动：提供统一的部署流水线，自动处理环境依赖与设备管理。
+- 多设备任务分发：可将任务分发至多台手机，同时记录交互轨迹以供观测与复现。
+- 多种Agent模式：覆盖 ReAct模式、Multi-Agent模式、定时任务等多种工作模式。
+
+这些能力使 GELab-Zero 能够灵活应对真实场景下的复杂任务流，并为未来的扩展提供坚实基础。
+
+对于 Agent 开发者，这套基建能够支持新想法、新策略的快速测试，验证交互方案；对于企业用户，则可以直接复用这套基建，将 MCP 能力快速集成到产品业务中。
 
 ## 🎥 应用演示
 
@@ -135,8 +150,50 @@
 
 **[📹 点击查看演示视频](./images/video_8.mp4)**
 
+## 📊 AndroidDaily：贴近日常生活的自建基准测试
 
-## 🏆 开放基准测试
+当前主流 Benchmark 多聚焦于生产力应用（如邮件），但用户日常高频使用的其实主要是生活服务类应用（如外卖、打车、社交、支付等），而这些场景更能体现当前 GUI Agent 的实用价值。
+
+为此，我们提出了 AndroidDaily：一个面向真实世界的多维动态基准测试。我们着重对现代生活的六大核心维度（食、行、购、住、讯、娱）进行实证分析，优先选取在这些类别中占据主导地位的热门应用。这使得基准测试中的任务具有真实世界的交互结果（如交易支付、服务预订）和紧密的线上线下继承性。
+
+为了平衡评估的全面性与执行效率，AndroidDaily 采用两种评估模式：
+
+### 静态测试 (Static Testing)
+包含 3146 个动作。提供任务描述和步骤截图，要求 Agent 预测每一步的动作类型和动作值（如点击坐标、输入文本），主要评估数值准确性。此方法无需复杂的工程基建，能够实现低成本的大规模模型快速迭代与测试。
+
+静态测试中的动作类型分布如下（共 3146 个动作）：
+- **CLICK**: 1354 次 - 点击操作
+- **COMPLETE**: 410 次 - 任务完成
+- **AWAKE**: 528 次 - App 唤醒
+- **TYPE**: 371 次 - 文本输入
+- **INFO**: 305 次 - 信息查询
+- **WAIT**: 85 次 - 等待操作
+- **SLIDE**: 93 次 - 滑动操作
+
+#### AndroidDaily 静态基准测试结果
+
+| 模型 | 准确率 (Accuracy) |
+|-------|----------|
+| GPT-4o | 0.196 |
+| Gemini-2.5-pro-thinking | 0.366 |
+| UI-TARS-1.5 | 0.470 |
+| GELab-Zero-4B-preview | **0.734** |
+
+### 端到端基准测试 (End-to-End Benchmark)
+包含 235 个任务。在功能完整的测试环境（如真机或模拟器）中进行，Agent 需要自主从头到尾执行任务，以整体任务成功率作为评估指标。这种设置具有最高的生态效度，真实反映 Agent 在复杂环境中的综合能力。
+
+端到端基准测试中的场景分布如下：
+- **出行 (Transportation)**: 78 个任务 (33.19%) - 打车、导航、公交等
+- **购物 (Shopping)**: 61 个任务 (25.96%) - 电商购物、支付、订单管理等
+- **社交通讯 (Social Communication)**: 43 个任务 (18.3%) - 发消息、社交互动等
+- **内容消费 (Content Consumption)**: 37 个任务 (15.74%) - 看新闻、看视频、收藏内容等
+- **本地服务 (Local Services)**: 16 个任务 (6.81%) - 外卖、到店服务等
+
+![场景分布](./images/Scenario_cn.png)
+
+典型任务包括打车、购物、发消息、收藏内容、点外卖等。GELab-Zero-4B-preview 在 AndroidWorld 测试中达到了 75.86% 的成功率，在复杂的移动任务上表现出色。
+
+## 🏆 开放基准测试 (Open Benchmark)
 
 我们对 GELab-Zero-4B-preview 模型在多个开源基准测试上进行了综合评估，涵盖 GUI 理解、定位、交互等多个维度。与其他开源模型的对比结果如下：
 
@@ -145,7 +202,7 @@
 基准测试结果表明，GELab-Zero-4B-preview 在多个开源基准测试中均表现出优异的性能，特别是在真实的移动场景（Android World）中结果尤为突出，证明了其在实际应用中的强大能力。
 
 
-## 🚀 安装-快速开始
+## 🚀 安装 & 快速开始
 
 端到端推理只需要几个简单的步骤：
 1. 搭建大模型（LLM）推理环境（ollama 或 vllm）
@@ -362,7 +419,7 @@ cd gelab-zero
 pip install -r requirements.txt
 
 # 运行单个任务推理示例
-python examples/run_single_task.py
+python examples/run_single_task_state_compress.py
 ```
 
 ### （可选）Step 4: 轨迹可视化环境搭建
@@ -371,10 +428,10 @@ python examples/run_single_task.py
 
 ```bash
 # 如果想让局域网内其他设备也能访问，可使用 --server.address 0.0.0.0
-streamlit run --server.address 0.0.0.0 visualization/main_page.py --server.port 33503
+streamlit run --server.address 0.0.0.0 visualization/pages/main_page.py --server.port 33503
 
 # 如果只想在本机访问，可使用以下命令：
-streamlit run --server.address 127.0.0.1 visualization/main_page.py --server.port 33503
+streamlit run --server.address 127.0.0.1 visualization/pages/main_page.py --server.port 33503
 
 ```
 
@@ -432,23 +489,23 @@ INT8 量化等级转换的 GGUF 格式大小为 454M，供参考。
 
 进入设置-模型提供商-选择llama.cpp，导入模型
 
-<img src="images/jan_1.png" width="50%" alt="test model">
+![导入模型](images/jan_1.png)
 
 依次选择刚刚转换的两个 GGUF 文件
 
-<img src="images/jan_2.png" width="50%" alt="test model">
+![导入模型](images/jan_2.png)
 
 回到模型界面后，记得点一下`开始`
 
 创建一个聊天，测试一下模型是否能正常运营。
 
-<img src="images/jan_3.png" width="50%" alt="test model">
+![测试模型](images/jan_3.png)
 
 确保模型可正常吐 token 后，启动本地 API 服务。
 
 进入设置-本地 API 服务，服务器配置中创建一个 API 秘钥，然后启动服务。
 
-<img src="images/jan_4.png" width="50%" alt="test model">
+![启动API服务](images/jan_4.png)
 
 #### Step 3：修改 GELab-Zero Agent 的模型配置
 
@@ -464,41 +521,30 @@ local:
     api_key: "YOU_KEY"
 ```
 
-2. `examples/run_single_task.py`示例代码中的模型名称，去掉参数后缀。
+2. `examples/run_single_task_state_compress.py` 示例代码中的模型名称改成你启动的本地模型名，并确保 `model_provider` 为 `local`。
 
 ```python
-# 第 21 行的模型名称修改为gelab-zero
-
 local_model_config = {
-    "task_type": "parser_0922_summary",
+    "task_type": "parser_0920_summary_adv_state_compress",
     "model_config": {
         "model_name": "gelab-zero",
         "model_provider": "local",
         "args": {
-            "temperature": 0.1,
+            "temperature": 1,
             "top_p": 0.95,
-            "frequency_penalty": 0.0,
-            "max_tokens": 4096,
+            "frequency_penalty": 0.05,
+            "max_tokens": 32768,
         },
+    },
+    "config": {
+        "enable_state_compression": True,
+        "state_compression_interval": 10,
+        "state_compression_recent_window": 10,
+        "state_compression_max_field_items": 10,
+    },
+}
 ```
 
----
-
-### (可选) MCP-Server 配置
-
-#### 步骤 1：启动 MCP Server 以支持多设备管理和任务分发
-
-```bash
-# 启用 mcp server
-python mcp_server/detailed_gelab_mcp_server.py
-
-```
-
-#### 步骤 2：在 Chatbox 中导入 MCP 工具
-
-<div style="display: flex; align-items: center; justify-content: center; width: 80%; margin: 0 auto;">
-<img src="images/MCP-chatbox.png" alt="MCP-Demo" style="flex: 1; height: 400px; object-fit: contain; margin-right: 1px;"/>
-</div>
 
 
 ## 📝 引用
@@ -506,18 +552,7 @@ python mcp_server/detailed_gelab_mcp_server.py
 如果您发现 GELab-Zero 对您的研究有帮助，请考虑引用我们的工作 :)
 
 
-
 ```bibtex
-@misc{yan2025stepguitechnicalreport,
-      title={Step-GUI Technical Report}, 
-      author={Haolong Yan and Jia Wang and Xin Huang and Yeqing Shen and Ziyang Meng and Zhimin Fan and Kaijun Tan and Jin Gao and Lieyu Shi and Mi Yang and Shiliang Yang and Zhirui Wang and Brian Li and Kang An and Chenyang Li and Lei Lei and Mengmeng Duan and Danxun Liang and Guodong Liu and Hang Cheng and Hao Wu and Jie Dong and Junhao Huang and Mei Chen and Renjie Yu and Shunshan Li and Xu Zhou and Yiting Dai and Yineng Deng and Yingdan Liang and Zelin Chen and Wen Sun and Chengxu Yan and Chunqin Xu and Dong Li and Fengqiong Xiao and Guanghao Fan and Guopeng Li and Guozhen Peng and Hongbing Li and Hang Li and Hongming Chen and Jingjing Xie and Jianyong Li and Jingyang Zhang and Jiaju Ren and Jiayu Yuan and Jianpeng Yin and Kai Cao and Liang Zhao and Liguo Tan and Liying Shi and Mengqiang Ren and Min Xu and Manjiao Liu and Mao Luo and Mingxin Wan and Na Wang and Nan Wu and Ning Wang and Peiyao Ma and Qingzhou Zhang and Qiao Wang and Qinlin Zeng and Qiong Gao and Qiongyao Li and Shangwu Zhong and Shuli Gao and Shaofan Liu and Shisi Gao and Shuang Luo and Xingbin Liu and Xiaojia Liu and Xiaojie Hou and Xin Liu and Xuanti Feng and Xuedan Cai and Xuan Wen and Xianwei Zhu and Xin Liang and Xin Liu and Xin Zhou and Yingxiu Zhao and Yukang Shi and Yunfang Xu and Yuqing Zeng and Yixun Zhang and Zejia Weng and Zhonghao Yan and Zhiguo Huang and Zhuoyu Wang and Zheng Ge and Jing Li and Yibo Zhu and Binxing Jiao and Xiangyu Zhang and Daxin Jiang},
-      year={2025},
-      eprint={2512.15431},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2512.15431}, 
-}
-
 @software{gelab_zero_2025,
   title={GELab-Zero: An Advanced Mobile Agent Inference System},
   author={GELab Team},
@@ -525,20 +560,25 @@ python mcp_server/detailed_gelab_mcp_server.py
   url={https://github.com/stepfun-ai/gelab-zero}
 }
 
-@misc{gelab_engine,
-      title={GUI Exploration Lab: Enhancing Screen Navigation in Agents via Multi-Turn Reinforcement Learning}, 
-      author={Haolong Yan and Yeqing Shen and Xin Huang and Jia Wang and Kaijun Tan and Zhixuan Liang and Hongxin Li and Zheng Ge and Osamu Yoshie and Si Li and Xiangyu Zhang and Daxin Jiang},
-      year={2025},
-      eprint={2512.02423},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2512.02423}, 
+@inproceedings{gelab_mt_rl,
+  title={GUI Exploration Lab: Enhancing Screen Navigation in Agents via Multi-Turn Reinforcement Learning},
+  author={Yan, Haolong and Shen, Yeqing and Huang, Xin and Wang, Jia and Tan, Kaijun and Liang, Zhixuan and Li, Hongxin and Ge, Zheng and Yoshie, Osamu and Li, Si and others},
+  booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems}
 }
 
 ```
 
+## 📧 联系方式
 
-## ⭐ Star 历史
+如有问题或需要支持，请联系：[tankaijun@stepfun.com]
+
+欢迎加入我们的微信群组进行沟通交流：
+
+| 微信群组 |
+|:-------------------------:|
+| <img src="images/wechat_group2.jpeg" width="200"> |
+
+
 <div align="center">
   <a href="https://star-history.com/#stepfun-ai/gelab-zero&Date">
     <img src="https://api.star-history.com/svg?repos=stepfun-ai/gelab-zero&type=Date" alt="Star History Chart" width="600">

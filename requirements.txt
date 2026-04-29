@@ -6,7 +6,7 @@ fastapi
 uvicorn
 
 pymongo
-openai==0.28.0
+openai==2.28.0
 
 pandas
 Pillow
@@ -17,3 +17,5 @@ tqdm
 requests
 
 fastmcp
+
+uiautomator2
