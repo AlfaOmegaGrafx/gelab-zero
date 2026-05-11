@@ -20,7 +20,10 @@ def _get_adb_command(device_id=None):
     if device_id is None:
         adb_command = "adb "
     else:
-        assert device_id in list_devices(), f"Device {device_id} not found in connected devices."
+        available_devices = list_devices()
+        if device_id not in available_devices:
+            print(f"所有可用的Device: {available_devices}")
+        assert device_id in available_devices, f"Device {device_id} not found in connected devices."
         adb_command = f"adb -s {device_id} "
     return adb_command
 
@@ -75,7 +78,7 @@ def press_home_key(device_id, print_command = False):
     
     subprocess.run(command, shell=True, capture_output=True, text=True)
 
-def init_device(device_id, print_command = False):
+def init_device(device_id, print_command = False, go_home = True):
     """
     Initialize the device by checking if yadb is installed.
     """
@@ -88,7 +91,7 @@ def init_device(device_id, print_command = False):
         print(f"Executing command: {command}")
     
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    if "29a0cd3b3adea92350dd5a25594593df" not in result.stdout:
+    if "d64490deffddd4b711c74ea465397abb" not in result.stdout:
         # to push yadb into the device
         command = f"{adb_command} push yadb /data/local/tmp"
         print(f"YADB is not installed on the device. Installing now...")
@@ -101,16 +104,26 @@ def init_device(device_id, print_command = False):
     else:
         print("yadb is already installed on the device.")
 
-    # press_home_key(device_id, print_command=print_command)
+    if go_home:
+        press_home_key(device_id, print_command=print_command)
 
-def init_all_devices():
+def init_all_devices(print_command = False, skip_emulator = True, go_home = True):
     """
     Initialize all devices by listing them and setting up the environment.
     """
     devices = list_devices()
     for device_id in tqdm(devices):
-        init_device(device_id)
+        if skip_emulator and device_id == "emulator-5554":
+            continue
+        init_device(device_id, print_command=print_command, go_home=go_home)
         print(f"Initialized device: {device_id}")
+
+def init_device_id(device_id, print_command = False, go_home = True):
+    """
+    Initialize all devices by listing them and setting up the environment.
+    """
+    init_device(device_id, print_command=print_command, go_home=go_home)
+    print(f"Initialized device: {device_id}")
 
 def dectect_screen_on(device_id, print_command = False):
     """
@@ -148,6 +161,35 @@ def dectect_screen_on(device_id, print_command = False):
         return True
     else:
         return False
+
+def dectect_screen_unlocked(device_id, print_command = False):
+    # adb shell dumpsys window | grep mDreamingLockscreen
+    # if screen is power on and locked will show:
+    #     mShowingDream=false mDreamingLockscreen=true
+    # elif the screen is power on and unlocked will show:
+    #    mShowingDream=false mDreamingLockscreen=false
+    # else if the screen is power off will show:
+    #     mShowingDream=false mDreamingLockscreen=true
+    # the program assume the screen power on
+
+    # assert dectect_screen_on(device_id=device_id, print_command=print_command), "The Screen must keep power on"
+    if not dectect_screen_on(device_id=device_id, print_command=print_command):
+        return False
+
+    adb_command = _get_adb_command(device_id)
+    command = f"{adb_command} shell dumpsys window | grep mDreamingLockscreen"
+    if print_command:
+        print(f"Executing command: {command}")
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    screen_state = result.stdout.strip()
+
+    # print(f"STATE: {screen_state}")
+
+    if screen_state.split("=")[-1] == 'false':
+        return True
+    else:
+        return False
+
 
 def press_power_key(device_id, print_command = False):
     """
@@ -192,19 +234,22 @@ def _open_screen(device_id, print_command = False):
     """
     
     is_screen_on = dectect_screen_on(device_id, print_command=print_command)
-    if is_screen_on:
-        if print_command:
-            print(f"Screen is already on for device {device_id}.")
-        return
+    # if is_screen_on:
+        # if print_command:
+            # print(f"Screen is already on for device {device_id}.")
+        # return
     
+    if not is_screen_on:
+        press_power_key(device_id, print_command=print_command)
+        time.sleep(1)
     
-    press_power_key(device_id, print_command=print_command)
-    time.sleep(0.2)
     maunfacturer = get_manufacturer(device_id)
-    if "vivo" in maunfacturer:
+
+    # if "vivo" in maunfacturer or "meizu" in maunfacturer:
+    if not dectect_screen_unlocked(device_id=device_id, print_command=True):
         # to swipe up to unlock the screen
         swipe_up_to_unlock(device_id, wm_size=get_device_wm_size(device_id), print_command=print_command)
-        time.sleep(0.2)
+        time.sleep(0.5)
 
         
 
@@ -239,6 +284,7 @@ def _capture_save_screenshot(device_id, tmp_file_dir="tmp_screenshot", image_nam
         screen_shot_pic_name = f"uuid_{uuid4()}.png"
     
     screen_shot_pic_path = os.path.join(tmp_file_dir, screen_shot_pic_name)
+
     try:
         # result = subprocess.run([adb_command, 'shell', 'screencap', '-p'], capture_output=True, text=True)
         command = f"{adb_command} shell screencap -p /sdcard/{screen_shot_pic_name}"
@@ -405,7 +451,7 @@ def model_act2front_act(act, wm_size):
 
 
     elif act['action_type'] == "WAIT":
-        #<STATUS>xxx<ACTION>explain:xxx\taction:WAIT\tvalue:5\tis_auto_close:true|false\tr1:xxx\tp1:x1,y1\tr2:xxx\tp2:x2,y2\t<PAYLOAD>plan:xxx\tsummary:xxx\t
+        #<STATUS>加载或广告<ACTION>explain:xxx\taction:WAIT\tvalue:5\tis_auto_close:true|false\tr1:xxx\tp1:x1,y1\tr2:xxx\tp2:x2,y2\t<PAYLOAD>plan:xxx\tsummary:xxx\t
 
         assert "value" in act, f"Value not found in WAIT action: {act}"
         value = act['value']
@@ -452,14 +498,14 @@ def model_act2front_act(act, wm_size):
         }
 
     elif act['action_type'] == "AWAKE":
-        # <STATUS>xxx<ACTION>explain:xxx\taction:AWAKE\tvalue:xxxx\t<PAYLOAD>plan:xxx\tsummary:xxx\t
+        # <STATUS>未唤醒app<ACTION>explain:xxx\taction:AWAKE\tvalue:xxxx\t<PAYLOAD>plan:xxx\tsummary:xxx\t
         assert "value" in act, f"Value not found in AWAKE action: {act}"
 
         value = act['value']
         down_stream_action['args']['text'] = value
 
     elif act['action_type'] == "ABORT":
-        # <STATUS>xxx<ACTION>explain:xxx\taction:ABORT\t<PAYLOAD>plan:xxx\tsummary:xxx\t
+        # <STATUS>加载或广告<ACTION>explain:xxx\taction:ABORT\t<PAYLOAD>plan:xxx\tsummary:xxx\t
 
         down_stream_action['args']['abort_reason'] = explain
     
@@ -617,6 +663,7 @@ def act_on_device(device_id, action, print_command = False, refush_app = True, d
     if print_command:
         print(f"Command output: {result.stdout}")
 
+# from tools.ask_llm import ask_llm_anything
 
 def default_reply_method(task, envs, actions, question):
     """
@@ -629,7 +676,7 @@ def default_reply_method(task, envs, actions, question):
     """
     
 
-    return "Choose the second one."
+    return "按你觉得合适的做。"
 
 class BaseMoboleActionHelper:
     def __init__(self, device_id = None):
@@ -727,7 +774,4 @@ class BaseMoboleActionHelper:
 
 if __name__ == "__main__":
 
-    print(get_device_wm_size("bc23727a"))
-    
-    open_screen(None, print_command=True)
     pass
