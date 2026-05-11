@@ -610,7 +610,7 @@ You can contact us and communicate with us by joining our WeChat group:
 
 | WeChat Group |
 |:-------------------------:|
-| <img src="images/wechat_group2.jpeg" width="200"> |
+| <img src="images/group-7.png" width="200"> |
 
 ## ⭐ Star History
 

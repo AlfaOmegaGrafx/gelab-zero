@@ -576,7 +576,7 @@ local_model_config = {
 
 | 微信群组 |
 |:-------------------------:|
-| <img src="images/wechat_group2.jpeg" width="200"> |
+| <img src="images/group-7.png" width="200"> |
 
 
 <div align="center">
